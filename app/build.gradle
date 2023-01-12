@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace 'com.hanif.gdelete'
-    compileSdk 32
+    namespace 'com.hanif.talkingTom'
+    compileSdk 33
 
     defaultConfig {
-        applicationId "com.hanif.gdelete"
+        applicationId "com.hanif.talkingTom"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 

@@ -1,14 +1,14 @@
-package com.hanif.gdelete;
+package com.hanif.talkingTom;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class more extends AppCompatActivity {
+public class webview extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_more);
+        setContentView(R.layout.activity_webview);
     }
 }

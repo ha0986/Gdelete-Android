@@ -1,14 +1,14 @@
-package com.hanif.gdelete;
+package com.hanif.talkingTom;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ads extends AppCompatActivity {
+public class start extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ads);
+        setContentView(R.layout.activity_start);
     }
 }
