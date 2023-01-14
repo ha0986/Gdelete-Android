@@ -2,29 +2,67 @@ package com.hanif.talkingTom;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class webview extends AppCompatActivity {
+    WebView webView;
+    public static String url;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
 
 
-        WebView view = findViewById(R.id.webView);
-        view.getSettings().getUserAgentString();
-        String newUserAgent;
-        String ua = view.getSettings().getUserAgentString();
-        String androidOSString = view.getSettings().getUserAgentString().substring(ua.indexOf("("), ua.indexOf(")") + 1);
-        newUserAgent = view.getSettings().getUserAgentString().replace(androidOSString, "(X11; Linux x86_64)");
 
-        view.getSettings().setUserAgentString(newUserAgent);
-        view.getSettings().setUseWideViewPort(true);
-        view.getSettings().setLoadWithOverviewMode(true);
-        view.loadUrl("https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox");
+
+
+
+
+        webView = findViewById(R.id.web);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
+
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
+
+        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        webView.setScrollbarFadingEnabled(false);
+        String newUA= "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36";
+        webView.getSettings().setUserAgentString(newUA);
+        webView.setWebViewClient(new Callback());
+        webView.loadUrl(url);
 
     }
 
+    private class Callback extends WebViewClient {
+        @Override
+        public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
+            return  false;
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

@@ -10,5 +10,9 @@
     <string name="points">points</string>
     <string name="hanifa">hanifa</string>
     <string name="hanifar">hanifar</string>
+    <string name="delete_mails_over_2_mb">Delete Mails over 2 Mb</string>
+    <string name="delete_mails_over_5_mb">Delete Mails over 5 Mb</string>
+    <string name="delete_mails_over_10_mb">Delete Mails over 10 Mb</string>
+    <string name="delete_all_mails">Delete All Mails</string>
 
 </resources>
