@@ -1,21 +1,27 @@
 package com.hanif.talkingTom;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.airbnb.lottie.LottieAnimationView;
+
 public class webview extends AppCompatActivity {
+
     WebView webView;
+    LottieAnimationView loading;
     public static String url;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_PROGRESS);
         setContentView(R.layout.activity_webview);
 
 
@@ -25,7 +31,22 @@ public class webview extends AppCompatActivity {
 
 
         webView = findViewById(R.id.web);
-        webView.getSettings().setJavaScriptEnabled(true);
+        loading = findViewById(R.id.loading);
+        getWindow().setFeatureInt( Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+    public void loadUrl(){
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
 
@@ -41,6 +62,27 @@ public class webview extends AppCompatActivity {
         webView.loadUrl(url);
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private class Callback extends WebViewClient {
         @Override
@@ -66,4 +108,6 @@ public class webview extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
 }

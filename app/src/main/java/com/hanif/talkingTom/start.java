@@ -16,6 +16,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 public class start extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class start extends AppCompatActivity {
         Button more = findViewById(R.id.more);
         ImageButton youTube = findViewById(R.id.youTube);
 
-
+        loadinter();
 
         web.setOnClickListener(v -> {
             Intent myIntent = new Intent(start.this, delete.class);
@@ -41,15 +42,13 @@ public class start extends AppCompatActivity {
         });
 
 
-
     }
 
 
-
-    public void loadinter(){
+    public void loadinter() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
