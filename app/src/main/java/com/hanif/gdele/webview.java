@@ -1,9 +1,11 @@
-package com.hanif.talkingTom;
+package com.hanif.gdele;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -33,12 +35,7 @@ public class webview extends AppCompatActivity {
         webView = findViewById(R.id.web);
         loading = findViewById(R.id.loading);
         getWindow().setFeatureInt( Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
-
-
-
-
-
-
+        loadUrl();
 
     }
 
@@ -49,6 +46,7 @@ public class webview extends AppCompatActivity {
     public void loadUrl(){
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setJavaScriptEnabled(true);
 
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
@@ -56,32 +54,33 @@ public class webview extends AppCompatActivity {
 
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.setScrollbarFadingEnabled(false);
-        String newUA= "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36";
+        String newUA= "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0";
         webView.getSettings().setUserAgentString(newUA);
         webView.setWebViewClient(new Callback());
         webView.loadUrl(url);
 
+
+
+
+        getWindow().setFeatureInt( Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
+        webview.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress)
+            {
+                setProgress(progress * 100); //Make the bar disappear after URL is loaded
+
+                if(progress == 100){
+                    loading.setVisibility(View.GONE);
+                }else {
+                    loading.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private static void setWebChromeClient(WebChromeClient webChromeClient) {
+    }
 
 
     private class Callback extends WebViewClient {
@@ -109,5 +108,6 @@ public class webview extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    
 
 }

@@ -14,5 +14,6 @@
     <string name="delete_mails_over_5_mb">Delete Mails over 5 Mb</string>
     <string name="delete_mails_over_10_mb">Delete Mails over 10 Mb</string>
     <string name="delete_all_mails">Delete All Mails</string>
+    <string name="rate_us">Rate us</string>
 
 </resources>
